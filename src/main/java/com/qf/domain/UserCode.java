@@ -20,4 +20,8 @@ public class UserCode {
     private String qqEmail;
     private String code;
     private Integer status;
+
+
+
+    private String name;
 }
