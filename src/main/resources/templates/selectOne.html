@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form th:action="update" method="post" enctype="multipart/form-data" th:object="${user}">
+        <input th:type="hidden" th:name="userid" th:value="*{userid}">
+        名称：<input th:name="loginName" th:value="*{loginName}">
+        密码：<input th:name="password">
+        <input th:type="submit" th:value="提交">
+    </form>
+</body>
+</html>

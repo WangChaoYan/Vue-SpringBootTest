@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" th:src="@{/js/jquery-2.1.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+    <script>
+        function judge() {
+            var loginName=$("#loginName").val();
+            var qq=$("#qq").val();
+            var date={"name":loginName,"qq":qq};
+            $.get("judge",date,function (r) {
+                if(r=='0'){
+
+                }else {
+                    $("#name").val("用户已存在");
+                    $("#qq").val("");
+                }
+            });
+        }
+
+        function insert() {
+            var loginName=$("#name").val();
+            var password=$("#password").val();
+            var realname=$("#realname").val();
+            var qq=$("#qq").val();
+            var code=$("#code").val();
+
+            var date={"loginName":loginName,"password":password,"realname":realname,"qq":qq,"code":code};
+            $.get("insert",date,function (r) {
+                console.log(r);
+                if(r=="0"){
+                    window.location.href="success";
+                }else {
+                    $("#code").val("验证码错误");
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<h1>注册</h1><br>
+
+<table class="table table-striped table-bordered table-condensed">
+    <tr>
+        <td>账号:<input th:id="name" th:name="loginName"></td>
+    </tr>
+    <tr>
+        <td>密码:<input th:id="password" th:name="password"></td>
+    </tr>
+    <tr>
+        <td>真实姓名:<input th:id="realname" th:name="realname"></td>
+    </tr>
+    <tr>
+        <td>QQ邮箱:<input th:id="qq" th:name="qqEmail"></td>
+    </tr>
+    <tr>
+        <td>验证码:<input th:id="code" th:name="code"></td>
+    </tr>
+    <tr>
+        <td><button onclick="judge()">获取验证码</button></td>
+    </tr>
+    <tr>
+        <td><button onclick="insert()">注册</button></td>
+    </tr>
+</table>
+
+</body>
+>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页</title>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" th:src="@{/js/jquery-2.1.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+    <script>
+        function login() {
+            var username=$("#username").val();
+            var password=$("#password").val();
+            $.post("/loginVal",{"username":username,"password":password},function (r) {
+                if(r=="1"){
+                    window.location.href="show";
+                }
+                if(r=="2"){
+                    $("#username").val("账号或者密码错误");
+                    window.location.href="login";
+                }
+                if(r=="3"){
+                    $("#username").val("值不能为空");
+                    window.location.href="login";
+                }
+            });
+        }
+        function registered() {
+            window.location.href="add";
+        }
+    </script>
+</head>
+<body>
+
+    <table class="table table-bordered table-condensed table-hover table-responsive" style="width: 250px;margin: 0 auto;">
+        <tr>
+            <td>请输入账号：<input  th:class="input-sm" th:type="text" th:id="username"></td>
+        </tr>
+        <tr>
+            <td>请输入密码：<input  th:class="input-sm" th:type="password" th:id="password"></td>
+        </tr>
+        <tr>
+            <td><button th:class="button" onclick="login()">登陆</button><button th:class="button" onclick="registered()">注册</button></td>
+        </tr>
+    </table>
+</body>
+</html>
