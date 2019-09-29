@@ -21,7 +21,4 @@ public class UserCode {
     private String code;
     private Integer status;
 
-
-
-    private String name;
 }
